@@ -1,0 +1,41 @@
+---
+title: "DataCleaning"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE}
+library(dplyr)
+library(tidyr)
+library(readr)
+```
+
+```{r}
+catch_original <- read_csv("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1")
+```
+```{r}
+catch_data <- catch_original %>%
+  select(Region, Year, Chinook, Sockeye, Coho, Pink, Chum)
+```
+
+```{r}
+catch_data2 <- catch_original %>%
+  select(Region:Chum)
+```
+
+```{r}
+catch_data3 <- catch_original %>%
+  select(-All, -notesRegCode)
+```
+
+```{r}
+catch_clean <- catch_data %>%
+  mutate(Chinook = as.numeric(Chinook))
+```
+
+
+
+
